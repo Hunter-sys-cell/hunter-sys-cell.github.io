@@ -17,6 +17,7 @@
     } else{
         document.write("<h1> Good Evening " + name + ", Thank you for ordering! </h1>");
     }
+    
     if(parseInt(numOfItems) <= 0 ){
         document.write("Please refresh the page and input a value for that is more than 0 for the quanity " );
     }
@@ -24,10 +25,10 @@
         document.write("Please refresh the page and input a value that is less than 100 for the quanity ");
     }
     else if(numOfItems == null ){
-        document.write("Please refresh the page and input a value for the quanity ");
+        document.write("Please refresh the page and input a number value for the quanity ");
     }
-    else if (parseInt(numOfItems) == NaN){
-        document.write("Please refresh the page and input a value for the quanity ");
+    else if (isNaN(parseInt(numOfItems))){
+        document.write("Please refresh the page and input a number value for the quanity ");
     }
     else{now.setDate(now.getDate() + 7)
     document.write("The item you purchased was "  + itemRequested + ". <br>");
