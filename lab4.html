@@ -11,11 +11,11 @@
     now = new Date();
     hour = now.getHours();
     if(hour > 12){
-        document.write("<h1> Good Moring "  + name + ", Thank you for ordering!</h1>");
+        document.write("<h1> Good Moring "  + name + ", Thank you for ordering! </h1>");
     } else if(hour < 18){
-        document.write("<h1> Good Afternoon " + name + ", Thank you for ordering</h1>!");
+        document.write("<h1> Good Afternoon " + name + ", Thank you for ordering! </h1>!");
     } else{
-        document.write("<h1> Good Evening " + name + ", Thank you for ordering!</h1>");
+        document.write("<h1> Good Evening " + name + ", Thank you for ordering! </h1>");
     }
     if(parseInt(numOfItems) < 0 ){
         document.writeln("Please refresh the page and input a value for that is more than 0 for the quanity " );
