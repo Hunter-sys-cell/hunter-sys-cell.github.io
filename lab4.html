@@ -26,7 +26,7 @@
     else if(numOfItems == null || numOfItems == NaN){
         document.writeln("Please refresh the page and input a value for the quanity ");
     }
-    else{now.setDate(now.getDate + 7)
+    else{now.setDate(now.getDate() + 7)
     document.writeln("The item you purchased was "  + itemRequested + ". <br>");
     document.writeln("The quanity of " + itemRequested +  " was "  + numOfItems + ". <br>");
     document.writeln(itemRequested +" Should arrive within "+ now + " days! <br>" );
