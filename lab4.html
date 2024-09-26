@@ -8,6 +8,7 @@
     name = window.prompt("Please enter your name!", "Name");
     itemRequested = window.prompt("What item are you getting?", "Item");
     numOfItems = window.prompt("What quanity of this item are you buying?!", "Quanity");
+    now = new Date();
     hour = now.getHours();
     if(hour > 12){
         document.write("<h1> Good Moring ")
@@ -17,7 +18,6 @@
         document.write("<h1> Good Evening ")
     }
     document.writenln(name + ", Thank you for shopping with us!")
-
 </script>
 
 </html>
