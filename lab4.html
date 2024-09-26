@@ -18,18 +18,18 @@
         document.write("<h1> Good Evening " + name + ", Thank you for ordering! </h1>");
     }
     if(parseInt(numOfItems) < 0 ){
-        document.writeln("Please refresh the page and input a value for that is more than 0 for the quanity " );
+        document.write("Please refresh the page and input a value for that is more than 0 for the quanity " );
     }
     else if(parseInt(numOfItems) > 100){
-        document.writeln("Please refresh the page and input a value that is less than 100 for the quanity ");
+        document.write("Please refresh the page and input a value that is less than 100 for the quanity ");
     }
     else if(numOfItems == null || numOfItems == NaN){
-        document.writeln("Please refresh the page and input a value for the quanity ");
+        document.write("Please refresh the page and input a value for the quanity ");
     }
     else{now.setDate(now.getDate() + 7)
-    document.writeln("The item you purchased was "  + itemRequested + ". <br>");
-    document.writeln("The quanity of " + itemRequested +  " was "  + numOfItems + ". <br>");
-    document.writeln(itemRequested +" Should arrive around "+ now + " <br>" );
+    document.write("The item you purchased was "  + itemRequested + ". <br>");
+    document.write("The quanity of " + itemRequested +  " was "  + numOfItems + ". <br>");
+    document.write(itemRequested +" Should arrive around "+ now + " <br>" );
     
     }
 </script>
