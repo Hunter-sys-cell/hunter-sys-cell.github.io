@@ -24,7 +24,7 @@
     else if(parseInt(numOfItems) > 100){
         document.writeln("Please refresh the page and input a value that is less than 100 for the quanity ");
     }
-    else if(parseInt(numOfItems) == NaN){
+    else if(numOfItems == null || numOfItems == NaN){
         document.writeln("Please refresh the page and input a value for the quanity ");
     }
     else{
