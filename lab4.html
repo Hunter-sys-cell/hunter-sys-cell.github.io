@@ -10,6 +10,7 @@
     numOfItems = window.prompt("What quanity of this item are you buying? Please input a number.", "Quanity");
     now = new Date();
     hour = now.getHours();
+    var newDate = parseInt(new Date()) + 7
     if(hour > 12){
         document.write("<h1> Good Moring "  + name + ", Thank you for ordering!</h1>");
     } else if(hour < 18){
@@ -29,6 +30,8 @@
     else{
     document.writeln("The item you purchased was "  + itemRequested);
     document.writeln("The quanity of " + itemRequested +  " was "  + numOfItems);
+    document.writeln(" Should arrive within " + newDate + " days!" );
+
     }
 </script>
 
