@@ -7,17 +7,17 @@
     var numOfItems;
     name = window.prompt("Please enter your name!", "Name");
     itemRequested = window.prompt("What item are you getting?", "Item");
-    numOfItems = window.prompt("What quanity of this item are you buying?!", "Quanity");
+    numOfItems = window.prompt("What quanity of this item are you buying? Please input a number.", "Quanity");
     now = new Date();
     hour = now.getHours();
     if(hour > 12){
-        document.write("<h1> Good Moring ")
+        document.write("<h1> Good Moring "  + name + "thank you for ordering!")
     } else if(hour < 18){
-        document.write("<h1> Good Afternoon ")
+        document.write("<h1> Good Afternoon " + name + "thank you for ordering!")
     } else{
-        document.write("<h1> Good Evening ")
+        document.write("<h1> Good Evening " + name + "thank you for ordering!")
     }
-    document.writenln(name + ", Thank you for shopping with us!")
+    
 </script>
 
 </html>
