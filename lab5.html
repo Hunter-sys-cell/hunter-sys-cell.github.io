@@ -25,19 +25,22 @@
         } 
     </script>
     <body>
-    <h3>Please enter your information</h3>
-    <form id="myForm">
-        First name: <input type ="text" name="name" value="First Name"><br>
-        Last name: <input type="text" name="name" value="Last Name"><br>
-        Email Address: <input type ="text" name="name" value="Email"><br>
-        Password: <input type="text" name="name" value="Create Password"><br>
-        Birthday: <input type="text" name="name" value="01/01/24"><br>
-    </form>
-    <button onclick="submitForm()">Submit</button>
-    <p>click submit and try me</p>
-    <p id="demo"></p>
-    <p>"name"</p>
-  </body>
+        <h3>Please enter your information</h3>
+        <form id="myForm">
+            
+            First name: <input type ="text" firstname="name" value="First Name"><br>
+            Last name: <input type="text" lastname="name" value="Last Name"><br>
+            Email Address: <input type ="text" email="name" value="Email"><br>
+            Password: <input type="text" password="name" value="Create Password"><br>
+            Birthday: <input type="text" birthday="name" value="01/01/24"><br>
+        </form>
+        <button onclick="submitForm()">Submit</button>
+        <p>click submit and try me</p>
+        <p id="demo"></p>
+      </body>
+      <script>
+        document.write(firstname +" is your first name and  "+ lastname + " is your lst name <br>" );
+    </script>
 </body> 
 
 
