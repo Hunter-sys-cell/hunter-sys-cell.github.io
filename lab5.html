@@ -21,25 +21,24 @@
         var elements = document.getElementById("myForm").elements;
         var elemsArr1 = Array.from(elements);
         var submission = {};
-        elemsArr1.forEach((element) => console.log(element.name + " " + element.value));
+        elemsArr1.forEach((element) => console.log(element.name + " " + element.value)); //save as an object, in this code he makes it print on this line but make it an object instead
         } 
     </script>
     <body>
         <h3>Please enter your information</h3>
         <form id="myForm">
             
-            First name: <input type ="text" firstname="name" value="First Name"><br>
-            Last name: <input type="text" lastname="name" value="Last Name"><br>
-            Email Address: <input type ="text" email="name" value="Email"><br>
-            Password: <input type="text" password="name" value="Create Password"><br>
-            Birthday: <input type="text" birthday="name" value="01/01/24"><br>
+            First name: <input type ="text" name="name1" value="First Name"><br>
+            Last name: <input type="text" name="name2" value="Last Name"><br>
+            Email Address: <input type ="text" name="name3" value="Email"><br>
+            Password: <input type="text" name="name4" value="Create Password"><br>
+            Birthday: <input type="text" name="name5" value="01/01/24"><br>
         </form>
         <button onclick="submitForm()">Submit</button>
-        <p>click submit and try me</p>
         <p id="demo"></p>
       </body>
       <script>
-        document.write(firstname +" is your first name and  "+ lastname + " is your lst name <br>" );
+        
     </script>
 </body> 
 
