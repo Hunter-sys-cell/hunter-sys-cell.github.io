@@ -5,11 +5,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      
+     
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <div class="container">
         <div class="jumbotron">
@@ -17,33 +17,107 @@
         </div>    
     </div>
     <script>
+      
         function submitForm(){
         var elements = document.getElementById("myForm").elements;
         var elemsArr1 = Array.from(elements);
         var submission = {};
-        elemsArr1.forEach((element) => console.log(element.name + " " + element.value)); //save as an object, in this code he makes it print on this line but make it an object instead
-        } 
-    </script>
-    <body>
-        <h3>Please enter your information</h3>
-        <form id="myForm">
+       
+        var user = {
+          firstname1 : elements["firstname"].value,
+          lastname1 : elements["lastname"].value,
+          email1 : elements["email"].value,
+          password1 : elements["password"].value,
+          birthday1 : elements["birthday"].value
+        }
+        var output = `
+                First Name: ${user.firstname1}<br>
+                Last Name: ${user.lastname1}<br>
+                Email: ${user.email1}<br>
+                Password: ${user.password1}<br>
+                Birthday: ${user.birthday1}<br>
+            `;
+            //
+            var len = user.password1.length;
+            var happy = user.password1.includes("!");
+            var sad = user.password1.includes("?");
+            var newpassword = "";
+            for(var i = 0; i < len; i++){
+              newpassword += "*";
+            }
+
+            //
+            if(user.firstname1 =="First Name" ||user.firstname1 == null || user.firstname1 == ""){
+              output = '<h4>Registration Failed:</h4>Please input a value for First name'
+            }
+            else if(user.lastname1 =="Last Name" ||user.lastname1 == null || user.lastname1 == ""){
+              output = '<h4>Registration Failed:</h4>Please input a value for Last name'
+            }
+            else if(user.email1 =="Email" ||user.email1 == null || user.email1 == ""){
+              output = '<h4>Registration Failed:</h4>Please input a value for Email address'
+            }
+            else if(user.password1 =="Create Password" ||user.password1 == null|| user.password1 == ""){
+              output = '<h4>Registration Failed:</h4>Please input a value for Password'
+            }
+            else if(user.birthday1 =="01/01/24" ||user.birthday1 == null|| user.birthday1 == ""){
+              output = '<h4>Registration Failed:</h4>Please input a value for Birthday'
+            }
+            else if(!happy){
+            output = '<h4>Registration Failed:</h4>Please put the special character ! somewhere in your password '
+            }
+            else if(!sad){
+            output = '<h4>Registration Failed:</h4>Please put the special character ? somewhere in your password '
+            }
+            else{output = `
+              <h3>REGISTRATION SUCCESSFUL!!!</h3>
+              <h3>THANK YOU FOR SIGNING UP!!!</h3>
+              <h4>Your account information:</h4>
+                First Name: ${user.firstname1}<br>
+                Last Name: ${user.lastname1}<br>
+                Email: ${user.email1}<br>
+                Password: ${newpassword}<br>
+                Birthday: ${user.birthday1}<br>
+            `;
+            }
             
+            //
+            
+            
+            
+            
+            
+            document.getElementById("demo").innerHTML = output;
+          
+        elemsArr1.forEach((element) => user[element.name]=element.value); //save as an object, in this code he makes it print on this line but make it an object instead
+        }
+       
+        </script>
+        <body>
+        <h3>Please enter your information to create account!</h3>
+        <h6>Password must contain special characters ! and ?</h6>
+        <form id="myForm">
+          <div class="row">
+            <div class="col-md-6">
             First name: <input type ="text" name="firstname" value="First Name"><br>
             Last name: <input type="text" name="lastname" value="Last Name"><br>
             Email Address: <input type ="text" name="email" value="Email"><br>
             Password: <input type="text" name="password" value="Create Password"><br>
             Birthday: <input type="text" name="birthday" value="01/01/24"><br>
+          </div>
+          <div class="col-md-6"><img src="skateboards.png" height=200 width=400 class="rounded-circle" alt="A picture of the sky!"></div>
+          </div>
         </form>
+        
         <button onclick="submitForm()">Submit</button>
         <p id="demo"></p>
+      </div>
       </body>
-      <script>
-        
-    </script>
-</body> 
+</body>
+
 
 
   <hr>
   <hr>
-  Last updated on 16<sup>th</sup>  October 2024 by Hunter Healey
+  Last updated on 20<sup>th</sup>  October 2024 by Hunter Healey
   </html>
+
