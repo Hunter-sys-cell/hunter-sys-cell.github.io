@@ -24,12 +24,13 @@
         const response = await fetch(url ,options);
         const result = await response.text();
         const myObj = JSON.parse(result); 
-        
+        //table shouldnt be there but picture should be there // using only get
+        document.getElementById("demo").innerHTML=JSON.stringify(myObj);
         }
        
         </script>
         
-        //table shouldnt be there but picture should be there
+        
         <button onclick="submitForm()">Submit</button>
         <p id="demo"></p>
       </div>
