@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Skateboard Shop!</title>
+    <title>Lab 6!</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,33 +25,34 @@
         const options = {method : 'GET', };
         const response = await fetch(url ,options);
         const result = await response.text();
-        //let text = '{ "facts" : [' + '{ "text":"John" , "factId":"1" },' + '{ "text":"John" , "factId":"2" },' + '{ "text":"John" , "factId":"5" },' + '{ "text":"John" , "factId":"3" } ]}';
         const myObj = JSON.parse(result);
-        //let text = ""; 
-        //for (const x in myObj) {
-        //  text += myObj[x] + ", ";}
-        //for (const x in myObj) 
-        //  {text += x + ", ";}
         myObj.facts.sort((a, b) => a.factId - b.factId);
-        //const myObj = JSON.parse(myJSON); 
-        //x = myObj["name"];
+        var table = document.createElement("table");
+        table.className = "table";
+        var headerRow = table.insertRow();
+        headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
         
-        //const obj = JSON.parse(text);
-        //table shouldnt be there but picture should be there // using only get
-        var table
-        document.getElementById("demo").innerHTML=JSON.stringify(myObj.facts[0].factId + " " +  myObj.facts[0].text + "<br>" + myObj.facts[1].factId + " " +  myObj.facts[1].text);
-      }
-          
-        
-        //document.getElementById("demo").innerHTML=obj.facts[1].text + " " + obj.facts[1].factId;
-       //// document.getElementById("demo").innerHTML=JSON.stringify(correct.facts[0].factId + " " +  correct.facts[0].text);
+        myObj.facts.forEach(fact =>{
+          var row = table.insertRow();
+          var cellA = row.insertCell(0);
+          var cellB = row.insertCell(1);
+          cellA.innerHTML = fact.factId;
+          cellB.innerHTML = fact.text;
+        });
 
-        
-       
+        const demoDiv = document.getElementById("demo");
+        demoDiv.innerHTML = "";
+        demoDiv.appendChild(table);
+        document.getElementById("image").src = myObj.catPhoto;
+
+      }
         </script>
-        
-        
-        <button onclick="submitForm()">Submit</button>
+         
+         <div class="image-container">
+          <img id="image" src="sky.png" height=200 width=300 class="rounded-circle" alt="The sky :0" />
+          <br> <br>
+      </div>
+        <button onclick="submitForm()">CAT BUTTON! :0</button>
         <p id="demo"></p>
       </div>
       </body>
@@ -61,29 +62,5 @@
 
   <hr>
   <hr>
-  Last updated on 23<sup>th</sup>  October 2024 by Hunter Healey
+  Last updated on 25<sup>th</sup>  October 2024 by Hunter Healey
   </html>
-  <script>
-    window.addEventListener("load", () => {
-      // (B) PARSE THE JSON STRING INTO OBJECT FIRST
-      var data = '{"Name":"John Doe","Email":"john@doe.com","Gender":"male"}';
-      data = JSON.parse(data);
-      // console.table(data);
-     
-      // (C) GENERATE TABLE
-      // (C1) CREATE EMPTY TABLE
-      var table = document.createElement("table"), row, cellA, cellB;
-      document.getElementById("demoA").appendChild(table);
-      for (let key in data) {
-        // (C2) ROWS & CELLS
-        row = table.insertRow();
-        cellA = row.insertCell();
-        cellB = row.insertCell();
-     
-        // (C3) KEY & VALUE
-        cellA.innerHTML = key;
-        cellB.innerHTML = data[key];
-      }
-    });
-    </script>
-  
