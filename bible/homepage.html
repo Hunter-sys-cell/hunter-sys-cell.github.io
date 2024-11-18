@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lab 3</title>
+    <title>The Holy Bible</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,43 +58,60 @@
           <div class="col-8"> 
         
           
-
+            <script>
+        async function submitForm1(){
+        const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(firstname)}&limit=10&sort=relevance&fuzziness=AUTO`;
+        const apiKey = 'f1111007013cf8340695cc552d983d14';
+        const options = {method : 'GET', };
+        const response = await fetch(url ,options);
+        const result = await response.text();
+        const myObj = JSON.parse(result);
+        myObj.facts.sort((a, b) => a.factId - b.factId);
+        var table = document.createElement("table");
+        table.className = "table";
+        var headerRow = table.insertRow();
+        headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
+              }
+            function submitForm(){
+              var elements = document.getElementById("myForm").elements;
+              var elemsArr1 = Array.from(elements);
+              var submission = {};
+            }
+            var user = {
+          firstname1 : elements["firstname"].value
+        }
+            </script>
+            
     <div class="jumbotron">
-        <br> <h1 style="font-family:verdana">Welcome to The Beautiful Bible!</h1>    
+        <br> <h1 style="font-family:verdana">The Holy Bible</h1>    
     </div>
     
     <body>
       <br>
       <h3 style="font-family:verdana">The Books Of The Bible</h3> 
       <p style ="font-family:verdana">
-        The Bible is broken up into two parts, The Old Testament and The New Testament.<br>
-        Of these two parts, The Bible contains 73 books in its complete collection.<br>
-        There are 46 books in the Old Testament section of The Bible.<br>
-        There are 27 books in the Old Testament section of The Bible.<br>
+        The Holy Bible is broken up into two parts, The Old Testament and The New Testament.<br>
+        Of these two parts, The Holy Bible contains 73 books in its complete collection.<br>
+        There are 46 books in the Old Testament section of The Holy Bible.<br>
+        There are 27 books in the New Testament section of The Holy Bible.<br>
         <a class="active" href="https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Go to the collection of books in the Bible.<br></a>
           <br>
           <br>
       </p>
-  </body>
-  <h3>Multiplication table of 3-4</h3>
-</body> 
-
-<div class="container"></div>
-  <div class="row">
-    <div class="col">
-      <body>
-        <h3>Some new things in this lab</h3>
-        <ol>
-            <li>Jumbotron</li>
-            <li>Navbar</li>
-            <li>12 Grid system</li>
-        </ol>
-        <img src="sky.png" height=200 width=300 class="rounded-circle" alt="A picture of the sky!">
-      </body>
-    </div>
-    <div class="col">
-    </div>
-  </div>     
+    </body>
+  
+    <body>
+      <h3 style="font-family:verdana">Search The Holy Bible</h3> 
+      <p style ="font-family:verdana">
+        With this feature you can enter a keyword to find a relating verse that is in The Holy Bible.
+        <div class="col-md-6">
+          Keyword: <input type ="text" name="firstname" value="Kingdom"><br>
+        </div>
+        <button onclick="submitForm1()">Enter</button>
+          <br>
+          <br>
+      </p>
+    </body>
   </div> 
   <div class="col-2">HELLO</div> 
         </div>
