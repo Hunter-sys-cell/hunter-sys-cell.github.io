@@ -32,12 +32,12 @@
         var headerRow = table.insertRow();
         headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
         
-        myObj.facts.forEach(fact =>{
+        myObj.facts.forEach(lol =>{
           var row = table.insertRow();
           var cellA = row.insertCell(0);
           var cellB = row.insertCell(1);
-          cellA.innerHTML = fact.factId;
-          cellB.innerHTML = fact.text;
+          cellA.innerHTML = lol.factId;
+          cellB.innerHTML = lol.text;
         });
 
         const demoDiv = document.getElementById("demo");
