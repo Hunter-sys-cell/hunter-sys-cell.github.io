@@ -59,30 +59,53 @@
         
           
             <script>
-        async function submitForm1(){
-        const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=sin&limit=10&sort=canonical&fuzziness=AUTO`;
-        const apiKey = 'f1111007013cf8340695cc552d983d14';
-        const options = {method : 'GET', };
-        const response = await fetch(url ,options);
-        const result = await response.text();
-        const myObj = JSON.parse(result);
-        var table = document.createElement("table");
-        table.className = "table";
-        var headerRow = table.insertRow();
-        headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
-              
-        myObj.verses.forEach(lol =>{
-          var row = table.insertRow();
-          var cellA = row.insertCell(0);
-          var cellB = row.insertCell(1);
-          cellA.innerHTML = lol.reference;
-          cellB.innerHTML = lol.text;
-        });
-      
-        const demoDiv = document.getElementById("demo");
-        demoDiv.innerHTML = "";
-        demoDiv.appendChild(table);
-      }
+            async function submitForm1() {
+  const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=sin&limit=10&sort=canonical&fuzziness=AUTO`;
+  const apiKey = '	f1111007013cf8340695cc552d983d14';
+  const options = { method: 'GET' };
+
+  try {
+    const response = await fetch(url, options);
+
+    // Check the response status (could be an error code)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();  // Use .json() instead of .text()
+
+    // Log the entire response to check the structure
+    console.log(result);
+
+    // Now check if `data.verses` exists in the response
+    if (result.data && Array.isArray(result.data.verses)) {
+      const myObj = result;
+      var table = document.createElement("table");
+      table.className = "table";
+      var headerRow = table.insertRow();
+      headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
+
+      myObj.data.verses.forEach((lol, index) => {
+        var row = table.insertRow();
+        var cellA = row.insertCell(0);
+        var cellB = row.insertCell(1);
+        cellA.innerHTML = `${index + 1}. ${lol.reference}`;
+        cellB.innerHTML = lol.text;
+      });
+
+      const demoDiv = document.getElementById("demo");
+      demoDiv.innerHTML = "";
+      demoDiv.appendChild(table);
+    } else {
+      throw new Error("No verses found in the response data.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    // Display error message to the user
+    document.getElementById("demo").innerHTML = `<p>Error: ${error.message}</p>`;
+  }
+}
+
             </script>
             
     <div class="jumbotron">
