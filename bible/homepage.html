@@ -112,13 +112,13 @@
       const result = await response.text();
       console.log(result);
       const myObj = JSON.parse(result);
-      myObj.filter(item => item.id == lastnamel)
+      const filteredVerses = myObj.data.verses.filter(verse => verse.bookId === lastnamel); 
       var table = document.createElement("table");
       table.className = "table";
       var headerRow = table.insertRow();
       headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
             
-      myObj.data.verses.forEach(lol =>{
+      filteredVerses.forEach(lol =>{
         var row = table.insertRow();
         var cellA = row.insertCell(0);
         var cellB = row.insertCell(1);
