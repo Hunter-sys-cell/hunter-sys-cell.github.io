@@ -97,6 +97,7 @@
     <script>
     async function submitForm2(){
       var lastname = document.getElementById("myForm1").elements["lastname"].value;
+      var lastnamel = document.getElementById("myForm2").elements["lastnamel"].value;
       const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(lastname)}&limit=200&sort=relevance&fuzziness=AUTO`;
       const apiKey = 'f1111007013cf8340695cc552d983d14';
 
@@ -109,9 +110,10 @@
   };
       const response = await fetch(url ,options);
       const result = await response.text();
+      const filteredData = result.filter(data => data.id === firstnamel);
       console.log(result);
       const myObj = JSON.parse(result);
-      //myObj.facts.sort((a, b) => a.factId - b.factId);
+      myObj.fact.sort((a, b) => a.id.lastnamel - b.id.lastnamel);
       var table = document.createElement("table");
       table.className = "table";
       var headerRow = table.insertRow();
