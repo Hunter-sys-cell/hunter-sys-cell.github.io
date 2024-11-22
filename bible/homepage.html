@@ -110,10 +110,9 @@
   };
       const response = await fetch(url ,options);
       const result = await response.text();
-      const filteredData = result.filter(data => data.id === firstnamel);
       console.log(result);
       const myObj = JSON.parse(result);
-      myObj.fact.sort((a, b) => a.id.lastnamel - b.id.lastnamel);
+      myObj.filter(item.)
       var table = document.createElement("table");
       table.className = "table";
       var headerRow = table.insertRow();
