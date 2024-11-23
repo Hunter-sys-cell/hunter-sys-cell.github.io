@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Holy Bible</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <body style="background-color: #ffffff;">
+    <style>
+        body {
+          margin: 0;
+          font-family: verdana, verdana, verdana;
+        }
+        
+        .topnav {
+          overflow: hidden;
+          background-color: #224e63;
+        }
+        
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+        
+        .topnav a:hover {
+          background-color: #2160c0;
+          color: rgb(0, 0, 0);
+        }
+        
+        .topnav a.active {
+          background-color: #960202;
+          color: white;
+        }
+        </style>
+        </head>
+        <body>
+        
+        <div class="topnav">
+          <a class="active" href="#https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Home</a>
+          <a href="https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Books</a>
+          <a href="https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Chapter</a>
+          <a href="https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Verse</a>
+        </div>
+        
+        </body>
+        <div class="row">
+          <div class="col-2">AYE</div> 
+          <div class="col-8"> 
+        
+          
+            <script>
+        async function submitForm1(){
+        var firstname = document.getElementById("myForm").elements["firstname"].value;
+        const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(firstname)}&limit=10&sort=relevance&fuzziness=AUTO`;
+        const apiKey = 'f1111007013cf8340695cc552d983d14';
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',  // Set the Accept header as in the CURL example
+            'api-key': apiKey  // Pass the API key in the api-key header
+        }
+    };
+        const response = await fetch(url ,options);
+        const result = await response.text();
+        console.log(result);
+        const myObj = JSON.parse(result);
+        //myObj.facts.sort((a, b) => a.factId - b.factId);
+        var table = document.createElement("table");
+        table.className = "table";
+        var headerRow = table.insertRow();
+        headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
+              
+        myObj.data.verses.forEach(lol =>{
+          var row = table.insertRow();
+          var cellA = row.insertCell(0);
+          var cellB = row.insertCell(1);
+          cellA.innerHTML = lol.reference;
+          cellB.innerHTML = lol.text;
+        });
+      
+        const demoDiv = document.getElementById("demo");
+        demoDiv.innerHTML = "";
+        demoDiv.appendChild(table);
+      }
+            </script>
+    <script>
+    async function submitForm2(){
+      var lastname = document.getElementById("myForm1").elements["lastname"].value;
+      const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/books/${encodeURIComponent(lastname)}/chapters`;
+      const apiKey = 'f1111007013cf8340695cc552d983d14';
+
+  const options = {
+      method: 'GET',
+      headers: {
+          'Accept': 'application/json',  // Set the Accept header as in the CURL example
+          'api-key': apiKey  // Pass the API key in the api-key header
+      }
+  };
+      const response = await fetch(url ,options);
+      const result = await response.text();
+      console.log(result);
+      const myObj = JSON.parse(result);
+      //const filteredVerses = myObj.data.verses.filter(verse => verse.bookId === lastnamel); 
+      var table = document.createElement("table");
+      table.className = "table";
+      var headerRow = table.insertRow();
+      headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
+      var finalnumber;
+      myObj.data.forEach(lol =>{
+        finalnumber = lol.number;
+      });
+      var output = `
+                TROLLLLLLLLLLLLLLLLL: ${finalnumber}<br>
+            `;
+            document.getElementById("demo1").innerHTML = output;
+      
+    }
+          </script>
+    <div class="jumbotron">
+        <br> <h1 style="font-family:verdana">The Holy Bible</h1>    
+    </div>
+    
+    <body>
+      <br>
+      <h3 style="font-family:verdana">The Books Of The Bible</h3> 
+      <p style ="font-family:verdana">
+        The Holy Bible is broken up into two parts, The Old Testament and The New Testament.<br>
+        Of these two parts, The Holy Bible contains 73 books in its complete collection.<br>
+        There are 46 books in the Old Testament section of The Holy Bible.<br>
+        There are 27 books in the New Testament section of The Holy Bible.<br>
+        <a class="active" href="https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Go to the collection of books in the Bible.<br></a>
+          <br>
+          <br>
+      </p>
+    </body>
+  
+    <body>
+      <h3 style="font-family:verdana">Search The Holy Bible</h3> 
+      <p style ="font-family:verdana">
+        With this feature you can enter a keyword to find a relating verse that is in The Holy Bible.
+        Just make sure to press the enter button after typing in your keyword.
+        <form id="myForm">
+          <div class="row">
+            <div class="col-md-6">
+            First name: <input type ="text" name="firstname" value=""><br>
+          </div>
+          </div>
+        </form>
+        
+        <button onclick="submitForm1()">Enter</button>
+        <p id="demo"></p>
+          <br>
+          <br>
+      </p>
+    </body>
+    <body>
+      <h3 style="font-family:verdana">Search The Holy Bible</h3> 
+      <p style ="font-family:verdana">
+        With this feature you can enter a keyword to find a relating verse that is in The Holy Bible.
+        Just make sure to press the enter button after typing in your keyword.
+        <form id="myForm1">
+          <div class="row">
+            <div class="col-md-6">
+            First name: <input type ="text" name="lastname" value=""><br>
+          </div>
+          </div>
+        </form>
+        <button onclick="submitForm2()">Enter</button>
+        <p id="demo1"></p>
+        Hint: you have to enter the names as appervations.<small>The abervations are GEN, EXO, LEV, NUM, 
+        DEU, JOS, JDG, RUT, 1SA, 2SA, 1KI, 2KI, 1CH, 2CH, EZR, NEH, EST, JOB, PSA, PRO, ECC, SNG, ISA,
+        JER, LAM, EZK, DAN, HOS, JOL, AMO, OBA, JON, MIC, NAM, HAB, ZEP, HAG, ZEC, MAL, 1ES, 2ES, TOB, 
+        JDT, ESG, WIS, SIR, BAR, S3Y, SUS, BEL, MAN, 1MA, 2MA, MAT, MRK, LUK, JHN, ACT, ROM, 1CO, 2CO, 
+        GAL, EPH, PHP, COL, 1TH, 2TH, 1TI, 2TI, TIT, PHM, HEB, JAS, 1PE, 2PE, 1JN, 2JN, 3JN, JUD, REV
+      </small>
+          <br>
+          <br>
+      </p>
+    </body>
+  </div> 
+  <div class="col-2">HELLO</div> 
+        </div>
+  <hr>
+  <hr>
+  Last updated on 21<sup>th</sup>  Sept 2024 by Hunter Healey
+</body>
+</html>
