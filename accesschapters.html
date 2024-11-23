@@ -128,7 +128,7 @@
     while (parseInt(onenumber) < parseInt(finalnumber)) {
       const url1 = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/passages/${encodeURIComponent(lastname)}.${encodeURIComponent(onenumber)}?content-type=html&include-notes=false&include-titles=true&include-chapter-numbers=true&include-verse-numbers=true&include-verse-spans=false&use-org-id=false`;  
       const response1 = await fetch(url1 ,options);
-      const result1 = await response1.json(); // Use .json() instead of .text()
+      const result1 = await response1.text(); // Use .json() instead of .text()
       console.log(result1);
 
       if (result1 && result1.data && Array.isArray(result1.data)) {
@@ -136,18 +136,14 @@
         table1.className = "table";
         var headerRow1 = table1.insertRow();
         headerRow1.innerHTML = "<th>No. </th><th>Fact</th>";
-
-        result1.data.forEach(lol => {
-          var row1 = table1.insertRow();
-          var cellA1 = row1.insertCell(0);
-          var cellB1 = row1.insertCell(1);
-          cellA1.innerHTML = lol.id;
-          cellB1.innerHTML = lol.bookId;
+        var dunk; 
+        result1.data.forEach(cat => {
+          dunk = cat.content
         });
-
-        const demoDiv = document.getElementById("demo1");
-        demoDiv.innerHTML = "";
-        demoDiv.appendChild(table1);
+        var output = `
+                ${dunk}<br>
+            `;
+            document.getElementById("demo1").innerHTML = output;
       }
 
       onenumber++; // Increment the number
