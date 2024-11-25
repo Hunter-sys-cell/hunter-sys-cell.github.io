@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Verse Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .verse {
+            margin: 10px 0;
+        }
+        .verse-number {
+            font-weight: bold;
+        }
+        .copyright {
+            font-size: small;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bible Reference: <span id="bible-reference"></span></h1>
+    <div id="content"></div>
+    <p id="copyright" class="copyright"></p>
+
+    <script>
+        // The URL to the API endpoint
+        const apiUrl = "https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/passages/MRK.1?content-type=html&include-notes=false&include-titles=true&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false&use-org-id=false";
+        
+        // Your API key
+        const apiKey = "f1111007013cf8340695cc552d983d14";
+
+        // Fetching the Bible passage from the API
+        fetch(apiUrl, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',  // Set the Accept header as in the CURL example
+                'api-key': apiKey
+            }
+        })
+        .then(response => {
+            return response.json();  // Parse the JSON response
+        })
+        .then(data => {
+            // Check if the data exists
+            if (data.data) {
+                const contentDiv = document.getElementById('content');
+                let contentHTML = data.data.content;
+                contentDiv.innerHTML = contentHTML;
+            } else {
+                // Handle errors if data is not in the expected format
+                document.getElementById('content').innerHTML = "<p>Sorry, there was an error fetching the data.</p>";
+            }
+        })
+        
+    </script>
+
+</body>
+</html>

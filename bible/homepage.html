@@ -98,7 +98,7 @@
     async function submitForm2(){
       var lastname = document.getElementById("myForm1").elements["lastname"].value;
       var lastnamel = document.getElementById("myForm2").elements["lastnamel"].value;
-      const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(lastname)}&limit=200&sort=relevance&fuzziness=AUTO`;
+      const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(lastname)}&limit=10000&sort=relevance&fuzziness=AUTO`;
       const apiKey = 'f1111007013cf8340695cc552d983d14';
 
   const options = {

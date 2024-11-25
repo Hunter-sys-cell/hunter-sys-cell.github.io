@@ -137,12 +137,11 @@
         var headerRow1 = table1.insertRow();
         headerRow1.innerHTML = "<th>No. </th><th>Fact</th>";
         var dunk; 
-        result1.data.forEach(cat => {
-          dunk = cat.content
-        });
-        var output = `
-                ${dunk}<br>
-            `;
+        if (data.data) {
+                const contentDiv = document.getElementById('content');
+                let contentHTML = data.data.content;
+                contentDiv.innerHTML = contentHTML;
+            }
             document.getElementById("demo1").innerHTML = output;
       }
 
