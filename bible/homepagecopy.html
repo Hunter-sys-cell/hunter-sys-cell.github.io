@@ -97,7 +97,8 @@
     <script>
     async function submitForm2(){
       var lastname = document.getElementById("myForm1").elements["lastname"].value;
-      const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/books/${encodeURIComponent(lastname)}/chapters`;
+      var lastnamel = document.getElementById("myForm2").elements["lastnamel"].value;
+      const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(lastname)}&limit=10000&sort=relevance&fuzziness=AUTO`;
       const apiKey = 'f1111007013cf8340695cc552d983d14';
 
   const options = {
@@ -111,20 +112,23 @@
       const result = await response.text();
       console.log(result);
       const myObj = JSON.parse(result);
-      //const filteredVerses = myObj.data.verses.filter(verse => verse.bookId === lastnamel); 
+      const filteredVerses = myObj.data.verses.filter(verse => verse.bookId === lastnamel); 
       var table = document.createElement("table");
       table.className = "table";
       var headerRow = table.insertRow();
       headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
-      var finalnumber;
-      myObj.data.forEach(lol =>{
-        finalnumber = lol.number;
+            
+      filteredVerses.forEach(lol =>{
+        var row = table.insertRow();
+        var cellA = row.insertCell(0);
+        var cellB = row.insertCell(1);
+        cellA.innerHTML = lol.reference;
+        cellB.innerHTML = lol.text;
       });
-      var output = `
-                TROLLLLLLLLLLLLLLLLL: ${finalnumber}<br>
-            `;
-            document.getElementById("demo1").innerHTML = output;
-      
+    
+      const demoDiv = document.getElementById("demo1");
+      demoDiv.innerHTML = "";
+      demoDiv.appendChild(table);
     }
           </script>
     <div class="jumbotron">
@@ -173,6 +177,13 @@
           <div class="row">
             <div class="col-md-6">
             First name: <input type ="text" name="lastname" value=""><br>
+          </div>
+          </div>
+        </form>
+        <form id="myForm2">
+          <div class="row">
+            <div class="col-md-6">
+            Second: <input type ="text" name="lastnamel" value=""><br>
           </div>
           </div>
         </form>

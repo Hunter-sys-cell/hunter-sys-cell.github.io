@@ -59,7 +59,7 @@
         
           
             <script>
-        async function submitForm1(){
+async function submitForm1(){
         var firstname = document.getElementById("myForm").elements["firstname"].value;
         const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(firstname)}&limit=10&sort=relevance&fuzziness=AUTO`;
         const apiKey = 'f1111007013cf8340695cc552d983d14';
@@ -95,63 +95,43 @@
       }
             </script>
     <script>
-    async function submitForm2(){
-  var lastname = document.getElementById("myForm1").elements["lastname"].value;
-  const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/books/${encodeURIComponent(lastname)}/chapters`;
-  const apiKey = 'f1111007013cf8340695cc552d983d14';
+async function submitForm2(){
+      var lastname = document.getElementById("myForm1").elements["lastname"].value;
+      var lastnamel = document.getElementById("myForm2").elements["lastnamel"].value;
+      const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/passages/${encodeURIComponent(lastname)}?content-type=json&include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=false&include-verse-spans=false&use-org-id=true`;
+      const apiKey = 'f1111007013cf8340695cc552d983d14';
 
   const options = {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'api-key': apiKey
-    }
-  };
-
-  const response = await fetch(url ,options);
-  const result = await response.json(); // Use .json() instead of .text()
-  console.log(result);
-  
-  if (result && result.data && Array.isArray(result.data)) {
-    var table = document.createElement("table");
-    table.className = "table";
-    var headerRow = table.insertRow();
-    headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
-    
-    let finalnumber;
-    result.data.forEach(lol => {
-      finalnumber = lol.number;
-    });
-
-    let onenumber = 1;
-
-    while (parseInt(onenumber) < parseInt(finalnumber)) {
-      const url1 = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/passages/${encodeURIComponent(lastname)}.${encodeURIComponent(onenumber)}?content-type=html&include-notes=false&include-titles=true&include-chapter-numbers=true&include-verse-numbers=true&include-verse-spans=false&use-org-id=false`;  
-      const response1 = await fetch(url1 ,options);
-      const result1 = await response1.text(); // Use .json() instead of .text()
-      console.log(result1);
-
-      if (result1 && result1.data && Array.isArray(result1.data)) {
-        var table1 = document.createElement("table");
-        table1.className = "table";
-        var headerRow1 = table1.insertRow();
-        headerRow1.innerHTML = "<th>No. </th><th>Fact</th>";
-        var dunk; 
-        if (data.data) {
-                const contentDiv = document.getElementById('content');
-                let contentHTML = data.data.content;
-                contentDiv.innerHTML = contentHTML;
-            }
-            document.getElementById("demo1").innerHTML = output;
+      method: 'GET',
+      headers: {
+          'Accept': 'application/json',  // Set the Accept header as in the CURL example
+          'api-key': apiKey  // Pass the API key in the api-key header
       }
-
-      onenumber++; // Increment the number
+  };
+      const response = await fetch(url ,options);
+      const result = await response.text();
+      console.log(result);
+      const myObj = JSON.parse(result);
+      //const filteredVerses = myObj.data.content.filter(verse => verse.items.text === lastnamel); 
+      const table = document.createElement("table");
+      table.className = "table";
+      const headerRow = table.insertRow();
+      headerRow.innerHTML = "<th>Verse</th><th>Text</th>";
+       
+      myObj.data.content.forEach(lol =>{
+        lol.items.forEach(lil => {
+        var row = table.insertRow();
+        var cellB = row.insertCell(0);
+        var cellC = row.insertCell(1);
+        cellB.innerHTML = lil.attrs.verseId;
+        cellC.innerHTML = lil.text;
+        });
+      });
+    
+      const demoDiv = document.getElementById("demo1");
+      demoDiv.innerHTML = "";
+      demoDiv.appendChild(table);
     }
-  } else {
-    console.error("Data is not in the expected format or empty");
-  }
-}
-
           </script>
     <div class="jumbotron">
         <br> <h1 style="font-family:verdana">The Holy Bible</h1>    
@@ -198,7 +178,14 @@
         <form id="myForm1">
           <div class="row">
             <div class="col-md-6">
-            First name: <input type ="text" name="lastname" value=""><br>
+            Book and Chapter: <input type ="text" name="lastname" value=""><br>
+          </div>
+          </div>
+        </form>
+        <form id="myForm2">
+          <div class="row">
+            <div class="col-md-6">
+            Keyword: <input type ="text" name="lastnamel" value=""><br>
           </div>
           </div>
         </form>
