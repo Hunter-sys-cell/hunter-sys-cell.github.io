@@ -59,7 +59,7 @@
         
           
             <script>
-        async function submitForm1(){
+async function submitForm1(){
         var firstname = document.getElementById("myForm").elements["firstname"].value;
         const url = `https://api.scripture.api.bible/v1/bibles/de4e12af7f28f599-01/search?query=${encodeURIComponent(firstname)}&limit=10&sort=relevance&fuzziness=AUTO`;
         const apiKey = 'f1111007013cf8340695cc552d983d14';
