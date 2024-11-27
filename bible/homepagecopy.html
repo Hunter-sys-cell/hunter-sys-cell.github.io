@@ -123,7 +123,14 @@
           var cellA = row.insertCell(0);
           cellA.innerHTML = wow.attrs.verseId;
           var cellB = row.insertCell(1);
-          cellB.innerHTML = wow.text;
+          var cat = wow.text
+          if(wow.items){
+            wow.items.forEach((hat) => {
+              cat += " " + hat.text;
+            })
+            
+          }
+          cellB.innerHTML = cat;
         });
       });
         const demoDiv = document.getElementById("demo1");
