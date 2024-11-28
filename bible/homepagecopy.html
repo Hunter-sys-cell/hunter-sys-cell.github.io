@@ -113,30 +113,56 @@
         console.log(result);
         const myObj = JSON.parse(result);
         //myObj.facts.sort((a, b) => a.factId - b.factId);
-        var table = document.createElement("table");
-        table.className = "table";
-        var headerRow = table.insertRow();
-        headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
-        myObj.data.content.forEach((contents)=> {
-        contents.items.forEach((wow) => {
-          var row = table.insertRow();
-          var cellA = row.insertCell(0);
-          cellA.innerHTML = wow.attrs.verseId;
-          var cellB = row.insertCell(1);
-          var cat = wow.text
-          if(wow.items){
-            wow.items.forEach((hat) => {
-              cat += " " + hat.text;
-            })
-            
+        //myObj.data.content.forEach((contents)=> {
+        //contents.
+        //const filteredVerses = myObj.data.verses.filter(verse => verse.bookId === lastnamel);
+function outside(wow){
+          const verses = {};
+  function fun(wow){
+        if(wow.text && wow.attrs && wow.attrs.verseId){
+          const doge = wow.attrs.verseId;
+          verses[doge] = (verses[doge] || "") + wow.text;
+        }
+        if(wow.items && Array.isArray(wow.items)){
+          wow.items.forEach(fun)
           }
-          cellB.innerHTML = cat;
+        }
+        fun(wow);
+        return verses;
+      }
+      ////////////
+      const verseMap = {};
+      myObj.data.content.forEach(wow => {
+        const foul = outside(wow);
+        Object.entries(foul).forEach(([verseId, text]) => {
+          verseMap[verseId] = (verseMap[verseId] || "") + text;
         });
       });
+
+      const table = document.createElement("table");
+      table.className = "table";
+      var headerRow = table.insertRow();
+      headerRow.innerHTML = "<th>No. </th><th>Fact</th>";
+      //const filteredVerses = Object.entries(verseMap).forEach(([verseId, text]).filter(verseId === lastnamel));
+      const filteredVerses = Object.entries(verseMap).filter(([verseId, text]) => 
+      text.toLowerCase().includes(lastnamel.toLowerCase()));
+      
+      filteredVerses.forEach(([verseId, text]) => {
+      const row = table.insertRow();
+      row.insertCell(0).innerHTML = verseId;
+      row.insertCell(1).innerHTML = text || "NA";
+      });
+      
+
         const demoDiv = document.getElementById("demo1");
         demoDiv.innerHTML = "";
         demoDiv.appendChild(table);
+      
+        if(filteredVerses.length === 0){
+        const output = "There are no verses matching this keyword!"
+        document.getElementById("demo1").innerHTML = output;
       }
+    }
           </script>
     <div class="jumbotron">
         <br> <h1 style="font-family:verdana">The Holy Bible</h1>    
