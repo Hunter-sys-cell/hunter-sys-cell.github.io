@@ -45,26 +45,29 @@
         </head>
         <body>
         
-        <div class="topnav">
-          <a href="https://hunter-sys-cell.github.io/bible/home.html">Home</a>
-          <a class="active" a href="#https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Books</a>
-          <a href="https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Passages</a>
-          <a href="https://github.com/Hunter-sys-cell/hunter-sys-cell.github.io/blob/main/bible/homepage.html">Information</a>
-        </div>
+          <div class="topnav">
+            <a href="https://hunter-sys-cell.github.io/bible/home.html">Home</a>
+            <a href="https://hunter-sys-cell.github.io/bible/books.html">Books</a>
+            <a href="https://hunter-sys-cell.github.io/bible/passages.html">Passages</a>
+            <a class="active" a href="#lol">Information</a>
+          </div>
         
         </body>
         <div class="row">
-          <div class="col-2"><script>
-            //THIS IS FILLER COLUMN DO NOT TYPE IN 
-          </script></div> 
+          <div class="col-2">
+            <script>
+              //THIS IS FILLER COLUMN DO NOT TYPE IN 
+            </script>
+          </div> 
           <div class="col-8"> 
         
           
-    <script>
-async function showBooks(){
-        const url = `https://api.scripture.api.bible/v1/bibles/179568874c45066f-01/books?include-chapters=true&include-chapters-and-sections=false`;
+            <script>
+    async function submitForm2(){
+        const url = `https://api.scripture.api.bible/v1/bibles/179568874c45066f-01`;
         const apiKey = 'f1111007013cf8340695cc552d983d14';
-    const options = {
+    
+        const options = {
         method: 'GET',
         headers: {
             'Accept': 'application/json',  
@@ -75,57 +78,42 @@ async function showBooks(){
         const result = await response.text();
         console.log(result);
         const myObj = JSON.parse(result);
-        var table = document.createElement("table");
-        table.className = "table";
-        var headerRow = table.insertRow();
-        headerRow.innerHTML = "<th>No. </th><th>Book Title</th><th>ID</th><th>Description</th>";
-        var index = 1;
-        myObj.data.forEach(lol =>{
-          var row = table.insertRow();
-          var cellD = row.insertCell(0);
-          var cellB = row.insertCell(1);
-          var cellA = row.insertCell(2);
-          var cellC = row.insertCell(3);
-          cellD.innerHTML = index;
-          cellA.innerHTML = lol.id;
-          cellB.innerHTML = lol.name;
-          cellC.innerHTML = lol.nameLong;
-          index = index + 1;
-        });
-      
-        const demoDiv = document.getElementById("demo");
+        //wow.attrs.verseId
+        //wow.text
+        const demoDiv = document.getElementById("demo1");
         demoDiv.innerHTML = "";
-        demoDiv.appendChild(table);
+        const verseElement = document.createElement("p");
+        verseElement.innerHTML = `Bible Used: <br>${myObj.data.name} <br> ${myObj.data.description} <br> ${myObj.data.info} <br> API Used: <br> API.Bible<br> It is to free use and 
+        has nearly 1500 Bible versions available across over 1000 languages. A big supporter of the website is The American Bible Society (ABS). The ABS work with a global network of partners to reach the unreached and help all people engage. 
+        <br> They're passionate about making the Bible available to every person in a language and in a format anyone can understand and afford, so all people may experience its life-changing message.
+        <a class="active" href="https://hunter-sys-cell.github.io/bible/books.html">Their website can be found here!<br></a>`;
+        demoDiv.appendChild(verseElement);
+      
+    
+        
 }
     </script>
-    <script>
-    
-    </script>
     <div class="jumbotron">
-        <br> <h1 style="font-family:verdana">The Books Of The Holy Bible</h1>    
+        <br> <h1 style="font-family:verdana">Information</h1>    
     </div>
-    
     <body>
       <p style ="font-family:verdana">
-        
-      </p>
-    </body>
-  
-    <body>
-      <script>
-      window.onload = showBooks();
-
-      </script>
-        
-        <p id="demo"></p>
+        <script>
+            window.onload = submitForm2();
+        </script>
+        <p id="demo1"></p>
+        <br>
+      </small>
           <br>
           <br>
       </p>
     </body>
   </div> 
-  <div class="col-2"><script>
-    //THIS IS FILLER COLUMN DO NOT TYPE IN 
-  </script></div> 
+  <div class="col-2">
+    <script>
+      //THIS IS FILLER COLUMN DO NOT TYPE IN 
+    </script>
+  </div> 
         </div>
   <hr>
   <hr>
